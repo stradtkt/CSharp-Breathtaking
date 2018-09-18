@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Breathtaking Cabin</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/fa/css/all.min.css">
+        <link rel="stylesheet" href="~/theme/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/theme/assets/css/now-ui-kit.min.css">
+        <link rel="stylesheet" href="~/css/site.css">
+    </environment>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top bg-success">
+  <div class="container">
+    <a class="navbar-brand" href="#">Breathtaking Cabin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" asp-action="Index" asp-controller="Home"><i class="far fa-home"></i> Home</a>
+            <a class="dropdown-item" asp-action="About" asp-controller="Home"><i class="far fa-info"></i> About</a>
+            <a class="dropdown-item" asp-action="Gallery" asp-controller="Home"><i class="fal fa-image"></i> Gallery</a>
+            <a class="dropdown-item" asp-action="Reviews" asp-controller="Home"><i class="fal fa-comment-dots"></i> Reviews</a>
+            <a class="dropdown-item" asp-action="Map" asp-controller="Home"><i class="fal fa-map-marked-alt"></i> Map</a>
+            <a class="dropdown-item" asp-action="Resources" asp-controller="Home"><i class="fal fa-project-diagram"></i> Resources</a>
+            <a class="dropdown-item" asp-action="Contact" asp-controller="Home"><i class="fal fa-file-signature"></i> Contact</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        @RenderBody()
+        <section id="footer-section">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <p>&copy; 2018 - Breathtaking Cabin</p>
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+
+    <environment include="Development">
+        <script src="~/theme/assets/js/core/jquery.min.js"></script>
+        <script src="~/theme/assets/js/core/bootstrap.min.js"></script>
+        <script src="~/theme/assets/js/core/popper.min.js"></script>
+        <script src="~/theme/assets/js/now-ui-kit.min.js"></script>
+        <script src="~/js/site.js"></script>
+        <script>
+      var map;
+      function initMap() {
+        var breath = {lat: 35.712377, lng: -83.617755};
+        var dolly = {lat: 35.795070, lng: -83.532719};
+        var smoky = {lat: 35.721528, lng: -83.499431};
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: breath,
+          zoom: 10
+        });
+        var image1 = '../../../images/cabin-map-icon-2-1.png';
+        var marker = new google.maps.Marker({
+            position: breath,
+            map: map,
+            icon: image1,
+            title: 'Breathtaking Cabin'
+        });
+        var image2 = '../../../images/dolly-1.png';
+        var marker = new google.maps.Marker({
+            position: dolly,
+            map: map,
+            icon: image2,
+            title: 'DollyWood'
+        });
+        var image3 = '../../../images/park-1.png';
+        var marker = new google.maps.Marker({
+            position: smoky,
+            map: map,
+            icon: image3,
+            title: 'Smoky Moutain National Park'
+        });
+      }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmS4k63OEYn7WYgQHOOV0xR5xFMIdhcTQ&callback=initMap"
+    async defer></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

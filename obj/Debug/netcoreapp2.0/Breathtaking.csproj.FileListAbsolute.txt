@@ -1,0 +1,11 @@
+E:\csharp\KevinStradtman\Breathtaking\bin\Debug\netcoreapp2.0\Breathtaking.deps.json
+E:\csharp\KevinStradtman\Breathtaking\bin\Debug\netcoreapp2.0\Breathtaking.runtimeconfig.json
+E:\csharp\KevinStradtman\Breathtaking\bin\Debug\netcoreapp2.0\Breathtaking.runtimeconfig.dev.json
+E:\csharp\KevinStradtman\Breathtaking\bin\Debug\netcoreapp2.0\Breathtaking.dll
+E:\csharp\KevinStradtman\Breathtaking\bin\Debug\netcoreapp2.0\Breathtaking.pdb
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.csprojResolveAssemblyReference.cache
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.csproj.CoreCompileInputs.cache
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.AssemblyInfoInputs.cache
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.AssemblyInfo.cs
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.dll
+E:\csharp\KevinStradtman\Breathtaking\obj\Debug\netcoreapp2.0\Breathtaking.pdb

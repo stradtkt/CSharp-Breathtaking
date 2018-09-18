@@ -1,0 +1,110 @@
+@model Breathtaking.Models.Review
+@{
+    ViewData["Title"] = "Breathtaking Reviews";
+}
+<section id="reviews-section-1" data-type="background" data-speed="3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="header-text">
+                    <h1 class="text-center">@ViewData["Title"]</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="reviews-section-2">
+    <div class="container">
+        <div class="card card-nav-tabs mt-5 mb-5">
+    <div class="card-header card-header-danger">
+
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#reviews" data-toggle="tab">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#addreview" data-toggle="tab">Add Review</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div><div class="card-body ">
+        <div class="tab-content text-center">
+            <div class="tab-pane active" id="reviews">
+                <div class="row">
+                    @foreach (var r in ViewBag.reviews)
+                    {
+                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                            <div class="card text-center">
+                                <div class="card-header mt-2">
+                                    <script>for(var i = 0; i < @r.rating; i++){document.write('<i class="fas fa-star"></i>')};</script>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">@r.User.first_name @r.User.last_name</h4>
+                                    <p class="card-text">
+                                        @r.review 
+                                        <br>
+                                        <small>Start Date: @r.start_visit_date </small>
+                                        <br>
+                                        <small>End Date: @r.end_visit_date</small>
+                                    </p>
+                                </div>
+                                <div class="card-footer text-muted mb-2">
+                                    @r.created_at
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="tab-pane" id="addreview">
+                <h3 class="text-center">Add Review</h3>
+                <form asp-action="AddReview" asp-controller="Home" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-4 col-lg-4 col-xl-4">
+                            <div class="bg-danger">
+                                <span asp-validation-for="start_visit_date"></span>
+                            </div>
+                            <br>
+                            <label asp-for="start_visit_date"></label>
+                            <input asp-for="start_visit_date" class="form-control" placeholder="Start Date">
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 col-xl-4">
+                            <div class="bg-danger">
+                                <span asp-validation-for="end_visit_date"></span>
+                            </div>
+                            <br>
+                            <label asp-for="end_visit_date"></label>
+                            <input asp-for="end_visit_date" class="form-control" placeholder="Start Date">
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4 col-xl-4">
+                            <br>
+                            <label asp-for="rating"></label>
+                            <select asp-for="rating" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="bg-danger">
+                            <span asp-validation-for="review"></span>
+                        </div>
+                        <br>
+                        <textarea cols="30" rows="10" asp-for="review" class="form-control" placeholder="Add Review"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success btn-round" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+    </div>
+</section>
