@@ -28,17 +28,20 @@ namespace Breathtaking.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("register")]
         public IActionResult Register()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
         [HttpGet("login")]
         public IActionResult Login()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
@@ -114,32 +117,34 @@ namespace Breathtaking.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Gallery")]
         public IActionResult Gallery()
         {
             ViewData["Message"] = "Your application description page.";
-
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Map")]
         public IActionResult Map()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Reviews")]
         public IActionResult Reviews()
         {
             List<Review> reviews = _bContext.reviews.Include(u => u.User).ToList();
+            ViewBag.user = ActiveUser;
             ViewBag.reviews = reviews;
             return View();
         }
@@ -169,7 +174,11 @@ namespace Breathtaking.Controllers
                 return View("Reviews");
             }
         }
-
+        [HttpGet("Calendar")]
+        public IActionResult Calendar()
+        {
+            return View();
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

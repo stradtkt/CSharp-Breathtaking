@@ -108,3 +108,20 @@
   </div>
     </div>
 </section>
+
+<section>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            @if(ViewBag.user == null)
+            {
+                <a asp-action="Login" asp-controller="Home" class="btn btn-round btn-info">Login</a>
+                <a asp-action="Register" asp-controller="Home" class="btn btn-round btn-success">Register</a>
+            }
+            else
+            {
+                <a asp-action="Logout" asp-controller="Home" class="btn btn-round btn-danger">Logout</a>
+            }
+            
+        </div>
+    </div>
+</section>

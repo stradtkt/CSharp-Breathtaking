@@ -31,6 +31,7 @@
             <a class="dropdown-item" asp-action="Gallery" asp-controller="Home"><i class="fal fa-image"></i> Gallery</a>
             <a class="dropdown-item" asp-action="Reviews" asp-controller="Home"><i class="fal fa-comment-dots"></i> Reviews</a>
             <a class="dropdown-item" asp-action="Map" asp-controller="Home"><i class="fal fa-map-marked-alt"></i> Map</a>
+            <a class="dropdown-item" asp-action="Calendar" asp-controller="Home"><i class="fal fa-calendar"></i> Calendar</a>
             <a class="dropdown-item" asp-action="Resources" asp-controller="Home"><i class="fal fa-project-diagram"></i> Resources</a>
             <a class="dropdown-item" asp-action="Contact" asp-controller="Home"><i class="fal fa-file-signature"></i> Contact</a>
           </div>
@@ -44,11 +45,12 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <p>&copy; 2018 - Breathtaking Cabin</p>
                         </div>
-                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
-                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
                     </div>
                 </div>
             </footer>
@@ -95,6 +97,9 @@
     </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmS4k63OEYn7WYgQHOOV0xR5xFMIdhcTQ&callback=initMap"
     async defer></script>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+    <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '4656585',appid: 'b1d06f71e0d2f85661337cfefe5c2578',units: 'imperial',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+
     </environment>
 
     @RenderSection("Scripts", required: false)

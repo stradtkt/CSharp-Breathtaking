@@ -6,10 +6,30 @@
 #home-section-1 {
     background: url('../images/home-1.jpg') 50% 0 repeat fixed;
     background-size: cover;
-    min-height: 900px;
+    min-height: 800px;
 }
 #reviews-section-1 {
     background: url('../images/about-1.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+}
+#about-section-1 {
+    background: url('../images/home-2.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+}
+#map-section-1 {
+    background: url('../images/home-3.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+}
+#calendar-section-1 {
+    background: url('../images/home-4.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+}
+#contact-section-1 {
+    background: url('../images/home-6.jpg') 50% 0 repeat fixed;
     background-size: cover;
     min-height: 450px;
 }
@@ -69,4 +89,8 @@ ul {
 .home {
     width: 10px;
     height: 10px;
+}
+#openweathermap-widget-11 {
+    position: relative;
+    left: 10%;
 }
