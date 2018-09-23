@@ -44,8 +44,8 @@
                                     <script>for(var i = 0; i < @r.rating; i++){document.write('<i class="fas fa-star"></i>')};</script>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title">@r.User.first_name @r.User.last_name</h4>
-                                    <p class="card-text">
+                                    <h4 class="card-title review-name">@r.User.first_name @r.User.last_name</h4>
+                                    <p class="card-text review-text">
                                         @r.review 
                                         <br>
                                         <small>Start Date: @r.start_visit_date </small>

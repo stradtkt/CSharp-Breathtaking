@@ -3,19 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Breathtaking Cabin</title>
+    <title>@ViewData["Title"] | Breathtaking Cabin</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/css/fa/css/all.min.css">
         <link rel="stylesheet" href="~/theme/assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="~/theme/assets/css/now-ui-kit.min.css">
         <link rel="stylesheet" href="~/css/site.css">
+        <link rel='stylesheet' href='~/gallery/source/unitegallery/css/unite-gallery.css' type='text/css' />
+	<link rel='stylesheet' href='~/gallery/source/unitegallery/themes/default/ug-theme-default.css' type='text/css' />
     </environment>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top bg-success">
   <div class="container">
-    <a class="navbar-brand" href="#">Breathtaking Cabin</a>
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home">Breathtaking Cabin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,6 +39,26 @@
           </div>
         </li>
       </ul>
+      <ul class="navbar-nav ml-auto">
+          @if(ViewBag.user == null)
+        {
+          <li class="nav-item">
+              <a class="nav-link" asp-action="Login" asp-controller="Home">Login</a>
+           </li>
+          <li class="nav-item">
+              <a class="nav-link" asp-action="Register" asp-controller="Home">Register</a>
+           </li>
+        }
+        else
+        {
+            <li class="nav-item first-name-container">
+                <a href="#" class="nav-link first-name">@ViewBag.user.first_name</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" asp-action="Logout" asp-controller="Home">Logout</a>
+           </li>
+        }
+      </ul>
     </div>
   </div>
 </nav>
@@ -47,10 +69,14 @@
                     <div class="row">
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <p>&copy; 2018 - Breathtaking Cabin</p>
+                            <a href="https://www.maplesridge.com/property/breathtaking-lodge-26/#availability" class="book-now-footer btn btn-round btn-lg btn-info">Book Now</a>
                         </div>
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                            <a class="weatherwidget-io" href="https://forecast7.com/en/35d87n83d56/sevierville/?unit=us" data-label_1="SEVIERVILLE" data-label_2="WEATHER" data-theme="original" >SEVIERVILLE WEATHER</a>
+                        <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        </script>
                         </div>
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
                     </div>
                 </div>
             </footer>
@@ -61,6 +87,28 @@
         <script src="~/theme/assets/js/core/bootstrap.min.js"></script>
         <script src="~/theme/assets/js/core/popper.min.js"></script>
         <script src="~/theme/assets/js/now-ui-kit.min.js"></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-common-libraries.js'></script>	
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-functions.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-thumbsgeneral.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-thumbsstrip.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-touchthumbs.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-panelsbase.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-strippanel.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-gridpanel.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-thumbsgrid.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-tiles.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-tiledesign.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-avia.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-slider.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-sliderassets.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-touchslider.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-zoomslider.js'></script>	
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-video.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-gallery.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-lightbox.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-carousel.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/js/ug-api.js'></script>
+        <script type='text/javascript' src='~/gallery/source/unitegallery/themes/default/ug-theme-default.js'></script>
         <script src="~/js/site.js"></script>
         <script>
       var map;
@@ -99,7 +147,15 @@
     async defer></script>
     <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
     <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11,cityid: '4656585',appid: 'b1d06f71e0d2f85661337cfefe5c2578',units: 'imperial',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+    	<script type="text/javascript">
 
+		jQuery(document).ready(function(){
+
+			jQuery("#gallery").unitegallery();
+
+		});
+		
+	</script>
     </environment>
 
     @RenderSection("Scripts", required: false)
