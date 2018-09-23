@@ -191,3 +191,8 @@ span.bold {
 .reviews::-webkit-scrollbar-thumb:hover {
     background: dodgerblue;
 }
+.card input[type="submit"] {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}

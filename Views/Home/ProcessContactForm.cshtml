@@ -1,0 +1,34 @@
+@{
+    var Name = Request["name"];
+    var Email = Request["email"]; 
+    var Subject = Request["subject"];
+    var Msg = Request["msg"];
+    var errorMessage = "Sorry the email you have sent did not process!";
+    var debuggingFlag = false;
+    try {
+        // Initialize WebMail helper
+        WebMail.SmtpServer = "Google";
+        WebMail.SmtpPort = 465;
+        WebMail.UserName = "stradtkt22";
+        WebMail.Password = "Buster183845";
+        WebMail.From = "stradtkt22@gmail.com";
+
+        // Send email
+        WebMail.Send(to: Email,
+            subject: Subject +" "+ Name,
+            body: Msg
+        );
+    }
+    catch (Exception ex ) {
+        errorMessage = ex.Message;
+    }
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card">
+            <p class="lead text-center">An email has been sent to the owners of the website.</p>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-info btn-round">Home</a>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,11 @@ using Breathtaking.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Net;
+using System.Web;
+using System.Text;
+using System.Threading;
 
 namespace Breathtaking.Controllers
 {
@@ -178,6 +183,100 @@ namespace Breathtaking.Controllers
         public IActionResult Calendar()
         {
             return View();
+        }
+
+        public void SendEmail(string toAddress, string fromAddress, string subject, string message)
+        {
+            try
+            {
+                using (var mail = new MailMessage())
+                {
+                    const string email = "stradtkt22@gmail.com";
+                    const string password = "Buster183845";
+
+                    var loginInfo = new NetworkCredential(email, password);
+
+
+                    mail.From = new MailAddress(fromAddress);
+                    mail.To.Add(new MailAddress(toAddress));
+                    mail.Subject = subject;
+                    mail.Body = message;
+                    mail.IsBodyHtml = true;
+
+                    try
+                    {
+                        using (var smtpClient = new SmtpClient("smtp.mail.google.com", 465))
+                        {
+                            smtpClient.EnableSsl = true;
+                            smtpClient.UseDefaultCredentials = false;
+                            smtpClient.Credentials = loginInfo;
+                            smtpClient.Send(mail);
+                        }
+
+                    }
+
+                    finally
+                    {
+                        //dispose the client
+                        mail.Dispose();
+                    }
+
+                }
+            }
+                catch (SmtpFailedRecipientsException ex)
+                {
+                    foreach (SmtpFailedRecipientException t in ex.InnerExceptions)
+                    {
+                        var status = t.StatusCode;
+                        if (status == SmtpStatusCode.MailboxBusy ||
+                            status == SmtpStatusCode.MailboxUnavailable)
+                        {
+                            Content("Delivery failed - retrying in 5 seconds.");
+                            System.Threading.Thread.Sleep(5000);
+                            //resend
+                            //smtpClient.Send(message);
+                        }
+                        else
+                        {
+                            Content("Failed to deliver message to {0}",
+                                            t.FailedRecipient);
+                        }
+                    }
+                }
+                catch (SmtpException Se)
+                {
+                    // handle exception here
+                    Content(Se.ToString());
+                }
+                catch (Exception ex)
+                {
+                    Content(ex.ToString());
+                }
+            }
+
+        [HttpPost("SendContact")]
+        public IActionResult SendContact(MailModels e)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //prepare email
+                var toAddress = "stradtkt22@gmail.com";
+                var fromAddress = e.email.ToString();
+                var subject = "Email from "+ e.name;
+                var message = new StringBuilder();
+                message.Append("Name: " + e.name + "\n");
+                message.Append("Email: " + e.email + "\n");
+                message.Append("Subject: " + e.subject + "\n\n");
+                message.Append("Message: " + e.msg);
+
+                //start email Thread
+                var tEmail = new Thread(() => 
+            SendEmail(toAddress, fromAddress, subject, message.ToString()));
+                tEmail.Start();
+                return RedirectToAction("Index");
+            }
+            return View("Contact");
         }
         public IActionResult Error()
         {
