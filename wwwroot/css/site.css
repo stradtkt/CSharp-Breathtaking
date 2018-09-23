@@ -168,3 +168,26 @@ span.bold {
     font-family: 'Alegreya Sans', sans-serif;
     font-weight: 650;
 }
+.reviews {
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    height: 500px;
+}
+.reviews::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.reviews::-webkit-scrollbar-track {
+    background: linear-gradient(120deg, dodgerblue, limegreen)
+}
+
+/* Handle */
+.reviews::-webkit-scrollbar-thumb {
+    background:blue; 
+}
+
+/* Handle on hover */
+.reviews::-webkit-scrollbar-thumb:hover {
+    background: dodgerblue;
+}
