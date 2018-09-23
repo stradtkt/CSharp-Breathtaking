@@ -121,21 +121,24 @@ namespace Breathtaking.Controllers
         [HttpGet("About")]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
             ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Gallery")]
         public IActionResult Gallery()
         {
-            ViewData["Message"] = "Your application description page.";
             ViewBag.user = ActiveUser;
             return View();
         }
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewBag.user = ActiveUser;
+            return View();
+        }
+        [HttpGet("Resources")]
+        public IActionResult Resources()
+        {
             ViewBag.user = ActiveUser;
             return View();
         }
@@ -182,6 +185,7 @@ namespace Breathtaking.Controllers
         [HttpGet("Calendar")]
         public IActionResult Calendar()
         {
+            ViewBag.user = ActiveUser;
             return View();
         }
 
@@ -205,7 +209,7 @@ namespace Breathtaking.Controllers
 
                     try
                     {
-                        using (var smtpClient = new SmtpClient("smtp.mail.google.com", 465))
+                        using (var smtpClient = new SmtpClient("smtp.gmail.com", 587))
                         {
                             smtpClient.EnableSsl = true;
                             smtpClient.UseDefaultCredentials = false;
@@ -255,7 +259,7 @@ namespace Breathtaking.Controllers
             }
 
         [HttpPost("SendContact")]
-        public IActionResult SendContact(MailModels e)
+        public ActionResult SendContact(MailModels e)
         {
             if (ModelState.IsValid)
             {

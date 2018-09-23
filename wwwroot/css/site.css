@@ -28,6 +28,11 @@ body {
     background-size: cover;
     min-height: 450px;
 }
+#resources-section-1 {
+    background: url('../images/pic48.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+}
 #calendar-section-1 {
     background: url('../images/home-4.jpg') 50% 0 repeat fixed;
     background-size: cover;
