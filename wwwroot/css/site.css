@@ -34,7 +34,7 @@ body {
     min-height: 450px;
 }
 #calendar-section-1 {
-    background: url('../images/home-4.jpg') 50% 0 repeat fixed;
+    background: url('../images/pic80.jpg') 50% 0 repeat fixed;
     background-size: cover;
     min-height: 450px;
 }
@@ -200,4 +200,7 @@ span.bold {
     margin: 0 auto;
     text-align: center;
     display: block;
+}
+#rat .card-header .nav-tabs-navigation .nav-tabs-wrapper .nav .nav-item .nav-link {
+    font-size: 16px !important;
 }

@@ -182,12 +182,6 @@ namespace Breathtaking.Controllers
                 return View("Reviews");
             }
         }
-        [HttpGet("Calendar")]
-        public IActionResult Calendar()
-        {
-            ViewBag.user = ActiveUser;
-            return View();
-        }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)
         {
