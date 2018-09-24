@@ -151,7 +151,9 @@ namespace Breathtaking.Controllers
         [HttpGet("Reviews")]
         public IActionResult Reviews()
         {
-            List<Review> reviews = _bContext.reviews.Include(u => u.User).ToList();
+            List<Review> reviews = _bContext.reviews.Include(u => u.User).Include(l => l.Likes).ToList();
+            List<Like> likes = _bContext.likes.Include(r => r.Review).ToList();
+            ViewBag.likes = likes;
             ViewBag.user = ActiveUser;
             ViewBag.reviews = reviews;
             return View();
@@ -181,6 +183,18 @@ namespace Breathtaking.Controllers
                 }
                 return View("Reviews");
             }
+        }
+
+        [Route("AddLike/{review_id}")]
+        public IActionResult AddLike(int review_id)
+        {
+            Like like = new Like
+            {
+                review_id = review_id,
+            };
+            _bContext.likes.Add(like);
+            _bContext.SaveChanges();
+            return RedirectToAction("Reviews");
         }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)

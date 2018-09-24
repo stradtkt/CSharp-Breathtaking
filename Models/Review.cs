@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Breathtaking.Models
@@ -25,8 +26,10 @@ namespace Breathtaking.Models
         [DataType(DataType.Date)]
         [Display(Name="End Date")]
         public DateTime end_visit_date {get;set;}
+        public List<Like> Likes {get;set;}
         public Review()
         {
+            Likes = new List<Like>();
             created_at = DateTime.Now;
             updated_at = DateTime.Now;
         }

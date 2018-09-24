@@ -9,5 +9,6 @@ namespace Breathtaking.Models
 
         public DbSet<User> users {get;set;}
         public DbSet<Review> reviews {get;set;}
+        public DbSet<Like> likes {get;set;}
     }
 }

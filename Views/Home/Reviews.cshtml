@@ -51,10 +51,12 @@
                                         <small>Start Date: @r.start_visit_date </small>
                                         <br>
                                         <small>End Date: @r.end_visit_date</small>
+                                        <br>
+                                        <small>Created At: @r.created_at</small>
                                     </p>
                                 </div>
                                 <div class="card-footer text-muted mb-2">
-                                    @r.created_at
+                                    <a  href="AddLike/@r.review_id" class="btn btn-round btn-info"><i class='fal fa-thumbs-up'></i> <span class="pl-2">@r.Likes.Count</span></a>
                                 </div>
                             </div>
                         </div>
