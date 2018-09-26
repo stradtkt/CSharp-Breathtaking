@@ -2,24 +2,11 @@
     ViewData["Title"] = "Breathtaking Contact";
 }
 @model Breathtaking.Models.MailModels
-
-<section id="contact-section-1" data-type="background" data-speed="3">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="header-text">
-                    <h1 class="text-center">@ViewData["Title"]</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
+<section id="contact-section-1">
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8 offset-2 mt-5 mb-5">
-                <div class="card p-5">
+                <div class="card p-5 mt-5 mb-5">
                 <h3 class="text-center">Contact Breathtaking</h3>
                 <form asp-action="SendContact" asp-controller="Home" method="POST">
                     <div class="form-group">

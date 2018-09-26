@@ -38,7 +38,7 @@
                 <div class="row">
                     @foreach (var r in ViewBag.reviews)
                     {
-                        <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">
                             <div class="card text-center">
                                 <div class="card-header mt-2">
                                     <script>for(var i = 0; i < @r.rating; i++){document.write('<i class="fas fa-star"></i>')};</script>
@@ -48,14 +48,11 @@
                                     <p class="card-text review-text">
                                         @r.review 
                                         <br>
-                                        <small>Start Date: @r.start_visit_date </small>
-                                        <br>
-                                        <small>End Date: @r.end_visit_date</small>
-                                        <br>
                                         <small>Created At: @r.created_at</small>
                                     </p>
                                 </div>
                                 <div class="card-footer text-muted mb-2">
+                                    <a href="DeleteReview/@r.review_id" class="btn btn-round btn-danger">Delete</a>
                                     <a  href="AddLike/@r.review_id" class="btn btn-round btn-info"><i class='fal fa-thumbs-up'></i> <span class="pl-2">@r.Likes.Count</span></a>
                                 </div>
                             </div>
@@ -64,6 +61,7 @@
                 </div>
             </div>
             <div class="tab-pane" id="addreview">
+                <div class="card p-4">
                 <h3 class="text-center">Add Review</h3>
                 <form asp-action="AddReview" asp-controller="Home" method="POST">
                     <div class="form-row">
@@ -105,6 +103,7 @@
                     <input type="submit" class="btn btn-success btn-round" value="Submit">
                 </form>
             </div>
+        </div>
         </div>
     </div>
   </div>

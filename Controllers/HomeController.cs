@@ -185,6 +185,15 @@ namespace Breathtaking.Controllers
             }
         }
 
+        [HttpGet("DeleteReview/{review_id}")]
+        public IActionResult DeleteReview(int review_id)
+        {
+            Review review = _bContext.reviews.Where(r => r.review_id == review_id).SingleOrDefault();
+            _bContext.reviews.Remove(review);
+            _bContext.SaveChanges();
+            return RedirectToAction("Reviews");
+        }
+
         [Route("AddLike/{review_id}")]
         public IActionResult AddLike(int review_id)
         {

@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro|EB+Garamond|Vollkorn|ABeeZee|Alegreya+Sans');
+﻿@import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro|EB+Garamond|Vollkorn|ABeeZee|Alegreya+Sans+SC|Rambla|Spirax');
 
 
 
@@ -9,9 +9,9 @@ body {
     background: #eeeeee;
 }
 #home-section-1 {
-    background: url('../images/home-1.jpg') 50% 0 repeat fixed;
+    background: url('../images/pic84.jpg') 50% 0 repeat fixed;
     background-size: cover;
-    min-height: 800px;
+    min-height: 650px;
 }
 #reviews-section-1 {
     background: url('../images/about-1.jpg') 50% 0 repeat fixed;
@@ -19,12 +19,12 @@ body {
     min-height: 450px;
 }
 #about-section-1 {
-    background: url('../images/home-2.jpg') 50% 0 repeat fixed;
+    background: url('../images/pic48.jpg') 50% 0 repeat fixed;
     background-size: cover;
     min-height: 450px;
 }
 #map-section-1 {
-    background: url('../images/home-3.jpg') 50% 0 repeat fixed;
+    background: url('../images/pic42.jpg') 50% 0 repeat fixed;
     background-size: cover;
     min-height: 450px;
 }
@@ -38,15 +38,11 @@ body {
     background-size: cover;
     min-height: 450px;
 }
-#contact-section-1 {
-    background: url('../images/home-6.jpg') 50% 0 repeat fixed;
-    background-size: cover;
-    min-height: 450px;
-}
 .header-text {
     margin-top: 20%;
     color: white;
     font-weight: 700;
+    font-family: 'Spirax', cursive;
 }
 .navbar {
     background: linear-gradient(100deg, limegreen, dodgerblue);
@@ -85,7 +81,7 @@ body {
     top: 40px;
 }
 #footer-section p {
-    margin-top: 20%;
+    margin-top: 10%;
     color: white;
     text-align: center;
 }
@@ -176,7 +172,7 @@ span.bold {
 .reviews {
     overflow-y: scroll;
     scroll-behavior: auto;
-    height: 500px;
+    height: 650px;
 }
 .reviews::-webkit-scrollbar {
     width: 10px;
@@ -203,4 +199,11 @@ span.bold {
 }
 #rat .card-header .nav-tabs-navigation .nav-tabs-wrapper .nav .nav-item .nav-link {
     font-size: 16px !important;
+}
+
+.login form input,
+.register form input,
+#contact-section-1 form textarea,
+#contact-section-1 form input {
+    box-shadow: 2px 2px 5px rgba(50,50,50,0.5);
 }
