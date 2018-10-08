@@ -115,6 +115,8 @@
         var breath = {lat: 35.712377, lng: -83.617755};
         var dolly = {lat: 35.795070, lng: -83.532719};
         var smoky = {lat: 35.721528, lng: -83.499431};
+        var kroger = {lat: 35.804490, lng: -83.581950};
+        var ober = {lat: 35.708980, lng: -83.521520};
         map = new google.maps.Map(document.getElementById('map'), {
           center: breath,
           zoom: 10
@@ -139,6 +141,20 @@
             map: map,
             icon: image3,
             title: 'Smoky Moutain National Park'
+        });
+        var image4 = '../../../images/kroger-2.png';
+        var marker = new google.maps.Marker({
+            position: kroger,
+            map: map,
+            icon: image4,
+            title: 'Krogers'
+        });
+        var image5 = '../../../images/ober-1.png';
+        var marker = new google.maps.Marker({
+            position: ober,
+            map: map,
+            icon: image5,
+            title: 'Ober Sky Tram'
         });
       }
     </script>

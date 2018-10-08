@@ -14,7 +14,7 @@ body {
     min-height: 650px;
 }
 #reviews-section-1 {
-    background: url('../images/about-1.jpg') 50% 0 repeat fixed;
+    background: url('../images/pic48.jpg') 50% 0 repeat fixed;
     background-size: cover;
     min-height: 450px;
 }
@@ -206,5 +206,8 @@ span.bold {
 #contact-section-1 form textarea,
 #contact-section-1 form input {
     box-shadow: 2px 2px 5px rgba(50,50,50,0.5);
+}
+.chart {
+
 }
 

@@ -188,7 +188,14 @@ namespace Breathtaking.Controllers
         [HttpGet("DeleteReview/{review_id}")]
         public IActionResult DeleteReview(int review_id)
         {
-            Review review = _bContext.reviews.Where(r => r.review_id == review_id).SingleOrDefault();
+            Review review = _bContext.reviews
+                .Where(r => r.review_id == review_id)
+                .SingleOrDefault();
+            List<Like> likes = _bContext.likes
+                .Include(r => r.Review)
+                .Where(r => r.review_id == review_id)
+                .ToList();
+            _bContext.likes.RemoveRange(likes);
             _bContext.reviews.Remove(review);
             _bContext.SaveChanges();
             return RedirectToAction("Reviews");
@@ -197,13 +204,28 @@ namespace Breathtaking.Controllers
         [Route("AddLike/{review_id}")]
         public IActionResult AddLike(int review_id)
         {
-            Like like = new Like
+            if(ActiveUser == null)
             {
-                review_id = review_id,
-            };
-            _bContext.likes.Add(like);
-            _bContext.SaveChanges();
-            return RedirectToAction("Reviews");
+                return RedirectToAction("Login");
+            }
+            List<Like> likes = _bContext.likes.Include(u => u.User).Include(r => r.Review).Where(r => r.review_id == review_id).ToList();
+            ViewBag.likes = likes;
+            if(ActiveUser.user_id == ViewBag.likes.User.user_id)
+            {
+                return RedirectToAction("Reviews");
+            }
+            else
+            {
+                Like like = new Like
+                {
+                    review_id = review_id,
+                    user_id = ActiveUser.user_id,
+                    user_liked = 1
+                };
+                _bContext.likes.Add(like);
+                _bContext.SaveChanges();
+                return RedirectToAction("Reviews");
+            }
         }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)

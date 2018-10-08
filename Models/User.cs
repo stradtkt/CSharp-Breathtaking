@@ -13,8 +13,10 @@ namespace Breathtaking.Models
         public string email {get;set;}
         public string password {get;set;}
         public List<Review> Reviews {get;set;}
+        public List<Like> Likes {get;set;}
         public User()
         {
+            Likes = new List<Like>();
             Reviews = new List<Review>();
             created_at = DateTime.Now;
             updated_at = DateTime.Now;
