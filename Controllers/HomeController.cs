@@ -208,24 +208,33 @@ namespace Breathtaking.Controllers
             {
                 return RedirectToAction("Login");
             }
-            List<Like> likes = _bContext.likes.Include(u => u.User).Include(r => r.Review).Where(r => r.review_id == review_id).ToList();
+            var likes = _bContext.likes
+                .Where(r => r.review_id == review_id)
+                .Include(u => u.User)
+                .Include(r => r.Review)
+                .FirstOrDefault();
+            int? user = HttpContext.Session.GetInt32("user_id");
             ViewBag.likes = likes;
-            if(ActiveUser.user_id == ViewBag.likes.User.user_id)
+            if(user != null)
             {
-                return RedirectToAction("Reviews");
-            }
-            else
-            {
-                Like like = new Like
+                if(ViewBag.likes.user_liked == ActiveUser.user_id)
                 {
-                    review_id = review_id,
-                    user_id = ActiveUser.user_id,
-                    user_liked = 1
-                };
-                _bContext.likes.Add(like);
-                _bContext.SaveChanges();
-                return RedirectToAction("Reviews");
+                    return RedirectToAction("Reviews");
+                }
+                else
+                {
+                    Like like = new Like
+                    {
+                        review_id = review_id,
+                        user_id = ActiveUser.user_id,
+                        user_liked = ActiveUser.user_id
+                    };
+                    _bContext.likes.Add(like);
+                    _bContext.SaveChanges();
+                    return RedirectToAction("Reviews");
+                }
             }
+            return View("Reviews");
         }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)
