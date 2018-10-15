@@ -26,10 +26,10 @@ namespace Breathtaking.Models
         [DataType(DataType.Date)]
         [Display(Name="End Date")]
         public DateTime end_visit_date {get;set;}
-        public List<Like> Likes {get;set;}
+        public List<Comment> Comments {get;set;}
         public Review()
         {
-            Likes = new List<Like>();
+            Comments = new List<Comment>();
             created_at = DateTime.Now;
             updated_at = DateTime.Now;
         }

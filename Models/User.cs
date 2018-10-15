@@ -12,10 +12,12 @@ namespace Breathtaking.Models
         public string last_name {get;set;}
         public string email {get;set;}
         public string password {get;set;}
-        public ICollection<Like> Likes {get;set;}
-        public ICollection<Review> Reviews {get;set;}
+        public List<Comment> Comments {get;set;}
+        public List<Review> Reviews {get;set;}
         public User()
         {
+            Reviews = new List<Review>();
+            Comments = new List<Comment>();
             created_at = DateTime.Now;
             updated_at = DateTime.Now;
         }

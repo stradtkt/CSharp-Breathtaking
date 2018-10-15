@@ -151,9 +151,11 @@ namespace Breathtaking.Controllers
         [HttpGet("Reviews")]
         public IActionResult Reviews()
         {
-            List<Review> reviews = _bContext.reviews.Include(u => u.User).Include(l => l.Likes).ToList();
-            List<Like> likes = _bContext.likes.Include(r => r.Review).ToList();
-            ViewBag.likes = likes;
+            if(ActiveUser == null)
+            {
+                return RedirectToAction("Login");   
+            }
+            List<Review> reviews = _bContext.reviews.Include(u => u.User).ToList();
             ViewBag.user = ActiveUser;
             ViewBag.reviews = reviews;
             return View();
@@ -188,53 +190,17 @@ namespace Breathtaking.Controllers
         [HttpGet("DeleteReview/{review_id}")]
         public IActionResult DeleteReview(int review_id)
         {
-            Review review = _bContext.reviews
-                .Where(r => r.review_id == review_id)
-                .SingleOrDefault();
-            List<Like> likes = _bContext.likes
-                .Include(r => r.Review)
-                .Where(r => r.review_id == review_id)
-                .ToList();
-            _bContext.likes.RemoveRange(likes);
-            _bContext.reviews.Remove(review);
-            _bContext.SaveChanges();
-            return RedirectToAction("Reviews");
-        }
-
-        [Route("AddLike/{review_id}")]
-        public IActionResult AddLike(int review_id)
-        {
-            if(ActiveUser == null)
+            if(ActiveUser == null) 
             {
                 return RedirectToAction("Login");
             }
-            var likes = _bContext.likes
+            Review review = _bContext.reviews
                 .Where(r => r.review_id == review_id)
-                .Include(u => u.User)
-                .Include(r => r.Review)
-                .FirstOrDefault();
-            int? user = HttpContext.Session.GetInt32("user_id");
-            ViewBag.likes = likes;
-            if(user != null)
-            {
-                if(ViewBag.likes.user_liked == ActiveUser.user_id)
-                {
-                    return RedirectToAction("Reviews");
-                }
-                else
-                {
-                    Like like = new Like
-                    {
-                        review_id = review_id,
-                        user_id = ActiveUser.user_id,
-                        user_liked = ActiveUser.user_id
-                    };
-                    _bContext.likes.Add(like);
-                    _bContext.SaveChanges();
-                    return RedirectToAction("Reviews");
-                }
-            }
-            return View("Reviews");
+                .SingleOrDefault();
+            ViewBag.user = ActiveUser;
+            _bContext.reviews.Remove(review);
+            _bContext.SaveChanges();
+            return RedirectToAction("Reviews");
         }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)
