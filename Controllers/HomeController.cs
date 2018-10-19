@@ -13,15 +13,18 @@ using System.Net;
 using System.Web;
 using System.Text;
 using System.Threading;
+using Microsoft.Extensions.Configuration;
 
 namespace Breathtaking.Controllers
 {
     public class HomeController : Controller
     {
+        private IConfiguration _configuration;
         private BreathContext _bContext;
-        public HomeController(BreathContext context)
+        public HomeController(BreathContext context, IConfiguration configuration)
         {
             _bContext = context;
+            _configuration = configuration;
         }
         private User ActiveUser 
         {
@@ -155,7 +158,10 @@ namespace Breathtaking.Controllers
             {
                 return RedirectToAction("Login");   
             }
-            List<Review> reviews = _bContext.reviews.Include(u => u.User).ToList();
+            List<Review> reviews = _bContext.reviews
+                .Include(c => c.Comments)
+                .Include(u => u.User)
+                .ToList();
             ViewBag.user = ActiveUser;
             ViewBag.reviews = reviews;
             return View();
@@ -197,10 +203,58 @@ namespace Breathtaking.Controllers
             Review review = _bContext.reviews
                 .Where(r => r.review_id == review_id)
                 .SingleOrDefault();
+            List<Comment> comments = _bContext.comments
+                .Include(r => r.Review)
+                .Where(r => r.review_id == review_id)
+                .ToList();
             ViewBag.user = ActiveUser;
+            _bContext.comments.RemoveRange(comments);
             _bContext.reviews.Remove(review);
             _bContext.SaveChanges();
             return RedirectToAction("Reviews");
+        }
+
+        [HttpGet("Reviews/{review_id}/Comments")]
+        public IActionResult Comments(int review_id)
+        {
+            if(ActiveUser == null)
+            {
+                return RedirectToAction("Login");
+            }
+            int? user = HttpContext.Session.GetInt32("user_id");
+            List<Comment> comments = _bContext.comments
+                .Include(c => c.Review)
+                .ThenInclude(cr => cr.Comments)                
+                .Include(c => c.User)
+                .ThenInclude(cu => cu.Comments)
+                .Where(c => c.review_id == review_id)
+                .ToList();
+            Review review = _bContext.reviews
+                .Include(u => u.User)
+                .Where(r => r.review_id == review_id)
+                .SingleOrDefault();
+            ViewBag.review = review;
+            ViewBag.comments = comments;
+            ViewBag.user = ActiveUser;
+            ViewBag.owner = user;
+            return View();
+        }
+        [HttpPost("PostComment")]
+        public IActionResult PostComment(int review_id, string comment)
+        {
+            if(ModelState.IsValid)
+            {
+                Comment newComment = new Comment
+                {
+                    user_id = ActiveUser.user_id,
+                    review_id = review_id,
+                    comment = comment
+                };
+                _bContext.comments.Add(newComment);
+                _bContext.SaveChanges();
+                return Redirect("/Reviews/"+ review_id + "/Comments");
+            }
+            return Redirect("/Reviews/"+ review_id + "/Comments");
         }
 
         public void SendEmail(string toAddress, string fromAddress, string subject, string message)
@@ -209,8 +263,10 @@ namespace Breathtaking.Controllers
             {
                 using (var mail = new MailMessage())
                 {
-                    const string email = "stradtkt22@gmail.com";
-                    const string password = "Buster183845";
+                    string value = _configuration.GetValue<string>("Data:password");
+                    string value2 = _configuration.GetValue<string>("Data:email");
+                    string email = value2;
+                    string password = value;
 
                     var loginInfo = new NetworkCredential(email, password);
 
@@ -283,9 +339,9 @@ namespace Breathtaking.Controllers
                 var fromAddress = e.email.ToString();
                 var subject = "Email from "+ e.name;
                 var message = new StringBuilder();
-                message.Append("Name: " + e.name + "\n");
-                message.Append("Email: " + e.email + "\n");
-                message.Append("Subject: " + e.subject + "\n\n");
+                message.Append("Name: " + e.name + "<br/>");
+                message.Append("Email: " + e.email + "<br/>");
+                message.Append("Subject: " + e.subject + "<br/><br/>");
                 message.Append("Message: " + e.msg);
 
                 //start email Thread

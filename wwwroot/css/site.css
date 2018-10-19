@@ -38,11 +38,19 @@ body {
     background-size: cover;
     min-height: 450px;
 }
+#comment-section-1 {
+    background: url('../images/home-1.jpg') 50% 0 repeat fixed;
+    background-size: cover;
+    min-height: 350px;
+}
 .header-text {
     margin-top: 20%;
     color: white;
     font-weight: 700;
     font-family: 'Spirax', cursive;
+}
+.header-text.comments {
+    margin-top: 15%;
 }
 .navbar {
     background: linear-gradient(100deg, limegreen, dodgerblue);
@@ -208,4 +216,27 @@ span.bold {
     box-shadow: 2px 2px 5px rgba(50,50,50,0.5);
 }
 
-
+.you-block {
+    width: 40%;
+    margin-left: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.you-block .you {
+    padding: 5px;
+}
+.others-block {
+    width: 40%;
+    margin-right: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.others-block .others {
+    padding: 5px;
+}

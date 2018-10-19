@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Comment on Review";
+}
+
+<section id="comment-section-1" data-type="background" data-speed="3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="header-text comments">
+                    <h1 class="text-center">@ViewData["Title"]</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="comment-section-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-1">
+                <div class="card p-3 mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center">@ViewBag.review.User.first_name @ViewBag.review.User.last_name</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center">
+                            <script>for(var i = 0; i < @ViewBag.review.rating; i++) {document.write('<i class="fas fa-star"></i>');}</script>
+                            <br>
+                            @ViewBag.review.review
+                            <br>
+                            <small>Start: @ViewBag.review.start_visit_date</small>
+                            <small>End: @ViewBag.review.end_visit_date</small>
+                            <br>
+                            <small>@ViewBag.review.created_at</small>
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-1">
+                <div class="card p-3 mt-5 mb-5">
+                    <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-1">
+                        <div class="card p-1 mt-3 mb-3">
+                            @foreach (var c in ViewBag.comments)
+                            {
+                                @if(ViewBag.user.user_id == ViewBag.owner)
+                                {
+                                    @if(c.User.user_id == ViewBag.user.user_id)
+                                    {
+                                        <div class="bg-info you-block mt-1">
+                                            <p class="text-center text-white you">@c.comment <br> <small>@c.User.first_name | @c.created_at</small></p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="bg-success others-block mt-1">
+                                            <p class="text-center text-white others">@c.comment <br> <small>@c.User.first_name | @c.created_at</small></p>
+                                        </div>
+                                    }
+
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-1">
+                        <div class="card p-1 mt-3 mb-3 rounded">
+                            <form action="/PostComment" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="review_id" value="@ViewBag.review.review_id">
+                                    <textarea name="comment" cols="30" rows="10" class="form-control rounded"></textarea>
+                                </div>
+                                <input type="submit" value="Submit" class="btn btn-round btn-info">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

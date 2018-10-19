@@ -56,7 +56,10 @@
                                     {
                                         <a href="DeleteReview/@r.review_id" class="btn btn-round btn-danger">Delete</a>
                                     }
-                                    <a  href="AddLike/@r.review_id" class="btn btn-round btn-info"><i class='fal fa-thumbs-up'></i> <span class="pl-2">@r.Likes.Count</span></a>
+                                    @if(ViewBag.user.user_id != null)
+                                    {
+                                        <a href="Reviews/@r.review_id/Comments" class="btn btn-success btn-round">Comments: @r.Comments.Count</a>
+                                    }
                                 </div>
                             </div>
                         </div>
