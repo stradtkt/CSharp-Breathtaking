@@ -1,4 +1,15 @@
-﻿@import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro|EB+Garamond|Vollkorn|ABeeZee|Alegreya+Sans+SC|Rambla|Spirax');
+﻿@import url("at1440px.css")  only screen and (max-width: 1440px);
+@import url("at1030px.css") only screen and (max-width: 1030px);
+@import url("at780px.css")  only screen and (max-width: 768px);
+@import url("at740px.css")  only screen and (max-width: 740px);
+@import url("at670px.css")  only screen and (max-width: 670px);
+@import url("at600px.css")  only screen and (max-width: 600px);
+@import url("at570px.css")  only screen and (max-width: 570px);
+@import url("at520px.css")  only screen and (max-width: 520px);
+@import url("at475px.css")  only screen and (max-width: 475px);
+
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro|EB+Garamond|Vollkorn|ABeeZee|Alegreya+Sans+SC|Rambla|Spirax');
 
 
 

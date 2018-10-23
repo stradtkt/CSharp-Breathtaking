@@ -1,0 +1,19 @@
+@media only screen and (max-width: 780px) {
+    #navbarNavDropdown::before {
+        background: linear-gradient(100deg, limegreen, dodgerblue);
+        background: -webkit-linear-gradient(100deg, limegreen, dodgerblue);
+        background: -moz-linear-gradient(100deg, limegreen, dodgerblue);
+        background: -o-linear-gradient(100deg, limegreen, dodgerblue);
+    }
+    ul.navbar-nav.ml-auto  {
+        margin: 0 auto !important;
+        position: relative !important;
+        right: 150% !important;
+    }
+    #video-1,
+    #video-2 {
+        position: relative;
+        right: 17%;
+    }
+    
+}

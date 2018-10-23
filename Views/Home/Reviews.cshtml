@@ -52,14 +52,18 @@
                                     </p>
                                 </div>
                                 <div class="card-footer text-muted mb-2">
+                                @if(ViewBag.user != null)
+                                {
                                     @if(ViewBag.user.user_id == r.User.user_id)
                                     {
                                         <a href="DeleteReview/@r.review_id" class="btn btn-round btn-danger">Delete</a>
                                     }
-                                    @if(ViewBag.user.user_id != null)
+                                    else
                                     {
-                                        <a href="Reviews/@r.review_id/Comments" class="btn btn-success btn-round">Comments: @r.Comments.Count</a>
+                                        <p></p>       
                                     }
+                                        <a href="Reviews/@r.review_id/Comments" class="btn btn-success btn-round">Comments: @r.Comments.Count</a>
+                                }
                                 </div>
                             </div>
                         </div>

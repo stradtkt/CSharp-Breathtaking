@@ -14,11 +14,13 @@
     
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top bg-success">
+<nav class="navbar fixed-top bg-success">
   <div class="container">
     <a class="navbar-brand" asp-action="Index" asp-controller="Home">Breathtaking Cabin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-bar bar1"></span>
+      <span class="navbar-toggler-bar bar2"></span>
+      <span class="navbar-toggler-bar bar3"></span>
     </button>
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
@@ -34,6 +36,15 @@
             <a class="dropdown-item" asp-action="Map" asp-controller="Home"><i class="fal fa-map-marked-alt"></i> Map</a>
             <a class="dropdown-item" asp-action="Resources" asp-controller="Home"><i class="fal fa-project-diagram"></i> Resources</a>
             <a class="dropdown-item" asp-action="Contact" asp-controller="Home"><i class="fal fa-file-signature"></i> Contact</a>
+        @if(ViewBag.user == null)
+        {
+            <a class="dropdown-item display-small-menu" asp-action="Login" asp-controller="Home"><i class="fas fa-sign-in"></i> Login</a>
+            <a class="dropdown-item display-small-menu" asp-action="Register" asp-controller="Home"><i class="far fa-registered"></i> Register</a>
+        }
+        else
+        {
+            <a class="dropdown-item display-small-menu" asp-action="Logout" asp-controller="Home"><i class="far fa-sign-out-alt"></i> Logout</a>
+        }
           </div>
         </li>
       </ul>
@@ -41,10 +52,10 @@
           @if(ViewBag.user == null)
         {
           <li class="nav-item">
-              <a class="nav-link" asp-action="Login" asp-controller="Home">Login</a>
+              <a class="nav-link" asp-action="Login" asp-controller="Home"> Login</a>
            </li>
           <li class="nav-item">
-              <a class="nav-link" asp-action="Register" asp-controller="Home">Register</a>
+              <a class="nav-link" asp-action="Register" asp-controller="Home"> Register</a>
            </li>
         }
         else
@@ -117,6 +128,9 @@
         var smoky = {lat: 35.721528, lng: -83.499431};
         var kroger = {lat: 35.804490, lng: -83.581950};
         var ober = {lat: 35.708980, lng: -83.521520};
+        var golf = {lat: 35.741340, lng: -83.536610};
+        var track = {lat: 35.806030, lng: -83.575740};
+        var guin = {lat: 35.806030, lng: -83.575737};
         map = new google.maps.Map(document.getElementById('map'), {
           center: breath,
           zoom: 10
@@ -155,6 +169,27 @@
             map: map,
             icon: image5,
             title: 'Ober Sky Tram'
+        });
+        var image6 = '../../../images/golf-1.png';
+        var marker = new google.maps.Marker({
+            position: golf,
+            map: map,
+            icon: image6,
+            title: 'Hillbilly Golf'
+        });
+        var image7 = '../../../images/track-1.png';
+        var marker = new google.maps.Marker({
+            position: track,
+            map: map,
+            icon: image7,
+            title: 'The Track'
+        });
+        var image8 = '../../../images/record-1.png';
+        var marker = new google.maps.Marker({
+            position: track,
+            map: map,
+            icon: image8,
+            title: 'The Track'
         });
       }
     </script>

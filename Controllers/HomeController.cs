@@ -154,10 +154,6 @@ namespace Breathtaking.Controllers
         [HttpGet("Reviews")]
         public IActionResult Reviews()
         {
-            if(ActiveUser == null)
-            {
-                return RedirectToAction("Login");   
-            }
             List<Review> reviews = _bContext.reviews
                 .Include(c => c.Comments)
                 .Include(u => u.User)
